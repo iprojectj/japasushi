@@ -262,7 +262,37 @@
 
 	<script src="js/sweetalert.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-	
+	<script>
+		function finalizar() {
+			Swal.fire({
+				title: "Deseja ser um Cliente VIP?",
+				showDenyButton: true,
+				showCancelButton: false,
+				allowOutsideClick: false,
+				icon: 'question',
+				confirmButtonText: "Sim, por favor!",
+				confirmButtonColor: "green",
+				denyButtonText: `Não`,
+				focusConfirm: true,
+			}).then((result) => {
+				if (result.isConfirmed) {
+					location.href = $('a#finalizarPedido').attr('href');
+				} else if (result.isDenied) {
+					Swal.fire({
+						title: "Selecione o dia e a hora, por gentileza!",
+						text: 'Deixe seu pedido agendado e receba na hora combinada.',
+						confirmButtonText: "Agendar pedido!",
+						confirmButtonColor: "green",
+						showCancelButton: false,
+						allowOutsideClick: false,
+						input: "datetime-local",
+					}).then((result) => {
+						location.href = $('a#finalizarPedido').attr('href');
+					});
+				}
+			});
+		}
+	</script>
 
 
 
